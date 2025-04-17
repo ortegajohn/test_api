@@ -10,7 +10,7 @@ def insert_postgres(json_data):
     # Replace these values with your actual connection details
     conn = psycopg2.connect(
         dbname=os.getenv('DBNAME'),
-        user=os.getenv('USER'),
+        user="postgres",
         password=os.getenv('PASSWORD'),
         host=os.getenv('HOST'),  # or your database host
         port=os.getenv('PORT')  # default PostgreSQL port
