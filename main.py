@@ -35,8 +35,24 @@ def insert_postgres(json_data):
     conn.close()
 
 @app.get("/get")
-async def root():
-    return {"message": "Hello World"}
+async def root(request: Request):
+    json_data = None
+    try:
+        json_data = await request.json()
+    except Exception as e:
+        print(e)
+    # return {"message": "Hello World"}
+    return_data = {
+        "isBase64Encoded": False,
+        "statusCode": 200,
+        "statusDescription": "200 OK",
+        "headers": {
+            "Set-cookie": "cookies",
+            "Content-Type": "application/json"
+        },
+        "body": json_data
+    }
+    return return_data
 
 @app.post("/post")
 async def read_json(request: Request):
