@@ -3,6 +3,7 @@ import psycopg2
 import json
 import os
 from dotenv import load_dotenv
+from fastapi.responses import PlainTextResponse
 load_dotenv()
 
 app = FastAPI()
@@ -43,7 +44,7 @@ async def root(request: Request):
         print(e)
 
     if 'challenge' in request.query_params.keys():
-        return request.query_params['challenge']
+        return PlainTextResponse(request.query_params['challenge'])
     # return {"message": "Hello World"}
     return_data = {
         "isBase64Encoded": False,
