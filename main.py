@@ -34,13 +34,14 @@ def insert_postgres(json_data):
     cur.close()
     conn.close()
 
-@app.get("/get")
+@app.get("/")
 async def root(request: Request):
     json_data = None
     try:
         json_data = await request.json()
     except Exception as e:
         print(e)
+    query_params = dict(request.query_params)
     # return {"message": "Hello World"}
     return_data = {
         "isBase64Encoded": False,
@@ -50,7 +51,8 @@ async def root(request: Request):
             "Set-cookie": "cookies",
             "Content-Type": "application/json"
         },
-        "body": json_data
+        "body": json_data,
+        "query": query_params
     }
     return return_data
 
