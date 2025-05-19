@@ -44,7 +44,7 @@ async def root(request: Request):
     query_params = dict(request.query_params)
 
     if 'challenge' in query_params.keys():
-        return query_params
+        return query_params['challenge']
     # return {"message": "Hello World"}
     return_data = {
         "isBase64Encoded": False,
