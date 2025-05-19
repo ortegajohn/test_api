@@ -41,7 +41,7 @@ async def root(request: Request):
         json_data = await request.json()
     except Exception as e:
         print(e)
-    query_params = json.loads(json.dumps(request.query_params))
+    query_params = json.loads(json.dumps(dict(request.query_params)))
 
     if 'challenge' in query_params.keys():
         return query_params['challenge']
