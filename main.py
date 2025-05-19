@@ -44,7 +44,7 @@ async def root(request: Request):
     query_params = json.loads(json.dumps(dict(request.query_params)))
 
     if 'challenge' in query_params.keys():
-        return query_params['challenge']
+        return query_params['challenge'].replace('"', '')
     # return {"message": "Hello World"}
     return_data = {
         "isBase64Encoded": False,
