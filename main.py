@@ -42,6 +42,8 @@ async def root(request: Request):
     except Exception as e:
         print(e)
     query_params = dict(request.query_params)
+    if 'challenge' in query_params.keys():
+        return query_params['challenge']
     # return {"message": "Hello World"}
     return_data = {
         "isBase64Encoded": False,
